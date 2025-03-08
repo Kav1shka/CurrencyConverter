@@ -14,17 +14,20 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-const url ="mongodb+srv://Kav1shka:kavishka123@cluster0.6fyga0b.mongodb.net/";
 
-mongoose.connect(url, (err) => {
+
+mongoose.connect(process.env.URL, (err) => {
   if (err) throw err;
   console.log("MongoDB is connected...");
 });
 
-const AuthRouter = require("./Routes/AuthRoute");
-app.use("/User", AuthRouter);
+
+const authRoutes = require("./Routes/authRoutes");
+const transactionRoutes = require("./Routes/transactionRoutes");
 
 
+app.use("/auth", authRoutes);
+app.use("/transaction", transactionRoutes);
 
 app.listen(PORT, () => {
   console.log(`server running at http://localhost:${PORT}`);
