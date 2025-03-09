@@ -22,7 +22,7 @@ mongoose.connect(process.env.URL, (err) => {
 });
 
 
-const authRoutes = require("./Routes/authRoutes");
+const authRoutes = require("./Routes/AuthRoute");
 const transactionRoutes = require("./Routes/transactionRoutes");
 
 
