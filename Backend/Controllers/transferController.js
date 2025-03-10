@@ -2,13 +2,13 @@
 const Transfer = require("../Models/Transfer.js");
 
 
-const getExchangeRate = require("../services/exchangeService.js");
+const getExchangeRate = require("../Services/exchangeRateService.js");
 
 /**
  * @desc Create a new transfer
  * @route POST /api/transfers
  */
-export const createTransfer = async (req, res) => {
+  const createTransfer = async (req, res) => {
     try {
         const { fromCurrency, toCurrency, transferAmount } = req.body;
 
@@ -45,7 +45,7 @@ export const createTransfer = async (req, res) => {
  * @desc Get all transfers
  * @route GET /api/transfers
  */
-export const getAllTransfers = async (req, res) => {
+const getAllTransfers = async (req, res) => {
     try {
         const transfers = await Transfer.find().sort({ createdAt: -1 });
         res.status(200).json(transfers);
@@ -58,7 +58,7 @@ export const getAllTransfers = async (req, res) => {
  * @desc Delete a transfer
  * @route DELETE /api/transfers/:id
  */
-export const deleteTransfer = async (req, res) => {
+ const deleteTransfer = async (req, res) => {
     try {
         const { id } = req.params;
         const transfer = await Transfer.findById(id);
@@ -72,4 +72,6 @@ export const deleteTransfer = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+
 };
+  module.exports = { createTransfer,getAllTransfers,deleteTransfer};

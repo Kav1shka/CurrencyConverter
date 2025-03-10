@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { userRegister, userLogin } = require("../Controllers/authController");
+const { register, login } = require("../Controllers/authController");
 
 
 router.post("/register",function(req,res){ 
-    userRegister(req, res);
+    register(req, res);
 }), 
 router.post("/login",function(req,res){
     

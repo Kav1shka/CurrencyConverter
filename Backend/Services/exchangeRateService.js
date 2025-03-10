@@ -1,5 +1,6 @@
-import axios from 'axios';
-import dotenv from 'dotenv';
+const axios = require("axios");
+const dotenv = require("dotenv");
+
 
 dotenv.config();
 
@@ -12,7 +13,8 @@ const EXCHANGE_RATE_API_URL = `https://v6.exchangerate-api.com/v6/${EXCHANGE_RAT
  * @param {string} toCurrency - Target currency (e.g., "LKR")
  * @returns {Promise<number>} - Exchange rate value
  */
-export const getExchangeRate = async (fromCurrency, toCurrency) => {
+
+ const getExchangeRate = async (fromCurrency, toCurrency) => {
     try {
         const response = await axios.get(`${EXCHANGE_RATE_API_URL}${fromCurrency}`);
         
@@ -33,7 +35,8 @@ export const getExchangeRate = async (fromCurrency, toCurrency) => {
  * @param {number} amount - Amount in base currency
  * @returns {Promise<number>} - Converted amount
  */
-export const convertCurrency = async (fromCurrency, toCurrency, amount) => {
+
+ const convertCurrency = async (fromCurrency, toCurrency, amount) => {
     const exchangeRate = await getExchangeRate(fromCurrency, toCurrency);
     
     if (!exchangeRate) {
@@ -42,3 +45,4 @@ export const convertCurrency = async (fromCurrency, toCurrency, amount) => {
     
     return amount * exchangeRate;
 };
+module.exports = { getExchangeRate,convertCurrency};

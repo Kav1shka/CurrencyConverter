@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 const transferSchema = new mongoose.Schema(
     {
@@ -30,4 +30,4 @@ const transferSchema = new mongoose.Schema(
 );
 
 const Transfer = mongoose.model('Transfer', transferSchema);
-export default Transfer;
+module.exports=Transfer;
