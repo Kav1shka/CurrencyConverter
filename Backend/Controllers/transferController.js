@@ -11,6 +11,7 @@ const getExchangeRate = require("../Services/exchangeRateService.js");
   const createTransfer = async (req, res) => {
     try {
         const { fromCurrency, toCurrency, transferAmount } = req.body;
+        console.log(req.body)
 
         // Validate input
         if (!fromCurrency || !toCurrency || !transferAmount) {
@@ -19,6 +20,7 @@ const getExchangeRate = require("../Services/exchangeRateService.js");
 
         // Fetch exchange rate
         const exchangeRate = await getExchangeRate(fromCurrency, toCurrency);
+        console.log(exchangeRate)
         if (!exchangeRate) {
             return res.status(400).json({ error: 'Invalid currency conversion' });
         }

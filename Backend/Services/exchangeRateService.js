@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const EXCHANGE_RATE_API_KEY = process.env.EXCHANGE_RATE_API_KEY;
+console.log(EXCHANGE_RATE_API_KEY);
 const EXCHANGE_RATE_API_URL = `https://v6.exchangerate-api.com/v6/${EXCHANGE_RATE_API_KEY}/latest/`;
 
 /**
@@ -16,8 +17,9 @@ const EXCHANGE_RATE_API_URL = `https://v6.exchangerate-api.com/v6/${EXCHANGE_RAT
 
  const getExchangeRate = async (fromCurrency, toCurrency) => {
     try {
+        console.log("came here 2");
         const response = await axios.get(`${EXCHANGE_RATE_API_URL}${fromCurrency}`);
-        
+        console.log(response);
         if (response.data && response.data.conversion_rates) {
             return response.data.conversion_rates[toCurrency] || null;
         }
