@@ -18,8 +18,11 @@ const EXCHANGE_RATE_API_URL = `https://v6.exchangerate-api.com/v6/${EXCHANGE_RAT
  const getExchangeRate = async (fromCurrency, toCurrency) => {
     try {
         console.log("came here 2");
+        console.log("Fetching exchange rate for:", fromCurrency, "to", toCurrency);
+        console.log("API URL:", `${EXCHANGE_RATE_API_URL}${fromCurrency}`)
         const response = await axios.get(`${EXCHANGE_RATE_API_URL}${fromCurrency}`);
-        console.log(response);
+        // console.log(response.data.conversion_rates);
+
         if (response.data && response.data.conversion_rates) {
             return response.data.conversion_rates[toCurrency] || null;
         }
@@ -40,7 +43,7 @@ const EXCHANGE_RATE_API_URL = `https://v6.exchangerate-api.com/v6/${EXCHANGE_RAT
 
  const convertCurrency = async (fromCurrency, toCurrency, amount) => {
     const exchangeRate = await getExchangeRate(fromCurrency, toCurrency);
-    
+    console.log(exchangeRate);
     if (!exchangeRate) {
         throw new Error('Exchange rate not available');
     }

@@ -2,7 +2,7 @@
 const Transfer = require("../Models/Transfer.js");
 
 
-const getExchangeRate = require("../Services/exchangeRateService.js");
+const {getExchangeRate}= require("../Services/exchangeRateService.js");
 
 /**
  * @desc Create a new transfer
@@ -17,7 +17,7 @@ const getExchangeRate = require("../Services/exchangeRateService.js");
         if (!fromCurrency || !toCurrency || !transferAmount) {
             return res.status(400).json({ error: 'All fields are required' });
         }
-
+console.log("xx");
         // Fetch exchange rate
         const exchangeRate = await getExchangeRate(fromCurrency, toCurrency);
         console.log(exchangeRate)
